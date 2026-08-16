@@ -1,14 +1,18 @@
-/* TYR INTEL — dark blue/violet stats theme */
+@import url(/assets/fonts/fonts.css);
+
+
 :root {
-  --bg: #0a0e1f;
-  --panel: #10162e;
-  --panel2: #131a33;
-  --border: #232c52;
+  --bg: #10141c;
+  --panel: #1a1e2e42;
+  --panel2: #272c4142;
+  --border: #3d4766;
+  --border-light: #868fbf;
   --text: #d6dcf5;
   --dim: #7f89b3;
   --blue: #4f7cff;
   --violet: #a06bff;
-  --grad: linear-gradient(100deg, var(--blue), var(--violet));
+  --acc: #00FFF2;
+  --alt-acc: #d6f902;
   /* Aliases under the names a suite file is documented to use, so a suite
      never has to know what this theme happens to call things. */
   --fg: var(--text);
@@ -21,13 +25,17 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+      repeating-linear-gradient(#151a25 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, #151a25 0 1px, transparent 1px 100%);
+  background-size: 40px 40px;
   color: var(--text);
   min-width: 320px;
 }
 
 body {
-  font-family: -apple-system, "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Ballinger", sans-serif;
   line-height: 1.45;
 }
 
@@ -47,14 +55,12 @@ a:hover { text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(10, 14, 31, 0.92);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--border);
 }
 .topnav-inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 14px 20px;
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -64,13 +70,16 @@ a:hover { text-decoration: underline; }
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 0.04em;
-  background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   white-space: nowrap;
 }
 .wordmark:hover { text-decoration: none; filter: brightness(1.15); }
+.wordmark-icon {
+  height: 2.7rem;
+  transform: translateY(7px);
+}
 .wordmark-dim {
   color: var(--dim);
   -webkit-text-fill-color: var(--dim);
@@ -79,32 +88,76 @@ a:hover { text-decoration: underline; }
 }
 .tabs {
   display: flex;
-  gap: 4px;
+  gap: 0px;
   flex: 1;
   flex-wrap: wrap;
+  padding: 14px 0px;
 }
 .tabs a {
   color: var(--dim);
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 6px 12px 6px 20px;
+
+  flex: 1;
+  max-width: 150px;
+
   font-size: 0.92rem;
-  font-weight: 600;
-  position: relative;
+  letter-spacing: 2px;
+  font-weight: 400;
   transition: color 120ms ease, background 120ms ease;
+
+  position: relative;
 }
-.tabs a[hidden] { display: none; }
-.tabs a:hover { color: var(--text); text-decoration: none; background: rgba(79, 124, 255, 0.08); }
-.tabs a.active { color: var(--text); }
-.tabs a.active::after {
+.tabs a::before {
   content: "";
   position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: -1px;
-  height: 2px;
-  background: var(--grad);
-  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  height: 20%;
+  border: var(--border-light) 1px solid;
+  border-top: none;
+  border-left: none;
 }
+.tabs a:first-child::before {
+  border-left: var(--border-light) 1px solid;
+}
+
+.tabs a::after {
+  left: 0;
+  width: 0;
+  content: "";
+  transition: .12s ease;
+}
+
+.tabs a[hidden] { display: none; }
+.tabs a:hover { color: var(--text); text-decoration: none; background: rgba(79, 124, 255, 0.08); }
+.tabs a:hover::after {
+  width: 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  height: 7px;
+  background: var(--alt-acc);
+}
+
+.tabs a.active { 
+  color: var(--text); 
+  font-weight: 500;
+  background: #ffffff;
+  background: linear-gradient(0deg,rgb(from var(--text) r g b / 40%) 0%, rgba(255, 255, 255, 0) 100%);
+}
+.tabs a.active::after {
+  width: 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  height: 7px;
+  background: var(--text);
+}
+
 .updated {
   color: var(--dim);
   font-size: 0.8rem;
@@ -202,6 +255,7 @@ a:hover { text-decoration: underline; }
 main#app {
   max-width: 1400px;
   margin: 0 auto;
+  min-height: 100vh;
   padding: 24px 20px 64px;
 }
 
@@ -225,12 +279,23 @@ main#app {
 h1, h2, h3 { margin: 0 0 14px; }
 h1 {
   font-size: 1.5rem;
-  background: var(--grad);
-  -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: var(--text);
+  letter-spacing: 2px;
   display: inline-block;
+  border-bottom: 2px var(--border) solid;
+  position: relative;
+  margin-left: 47px;
 }
+h1::before {
+  position: absolute;
+  content: "";
+  left: -47px;
+  width: 37px;
+  height: 37px;
+  background-color: var(--border);
+}
+
 h2 {
   font-size: 1.05rem;
   padding-bottom: 8px;
@@ -244,7 +309,7 @@ h2::after {
   bottom: -1px;
   width: 56px;
   height: 2px;
-  background: var(--grad);
+  background: var(--acc);
 }
 
 .page-head {
@@ -254,6 +319,10 @@ h2::after {
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 18px;
+}
+
+.page-head h1 {
+  flex: 1;
 }
 
 .empty-state {
@@ -420,7 +489,7 @@ thead th {
   letter-spacing: 0.04em;
   padding: 8px 12px;
   border-bottom: 2px solid transparent;
-  border-image: var(--grad) 1;
+  border-image: var(--acc) 1;
   white-space: nowrap;
 }
 /* The Tanks table is 15 columns. At 12px of side padding it needs about
@@ -550,19 +619,22 @@ td.tank { color: var(--violet); }
   gap: 14px;
 }
 .map-card {
-  background: var(--panel);
+  background-color: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
   padding: 12px;
   color: var(--text);
-  transition: border-color 120ms ease, transform 120ms ease;
+  transition: border-color 120ms ease, transform 120ms ease, background-color 120ms ease;
 }
-.map-card:hover { border-color: var(--blue); text-decoration: none; transform: translateY(-2px); }
+.map-card:hover { 
+  border-color: var(--acc); 
+  text-decoration: none; 
+  transform: translateY(-2px); 
+  background-color: rgb(from var(--acc) r g b / 15%);
+}
 .map-card-img {
   width: 100%;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
   background: var(--panel2);
   margin-bottom: 10px;
   display: block;
@@ -582,7 +654,7 @@ td.tank { color: var(--violet); }
   font-size: 1.6rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  background: var(--grad);
+  background: var(--acc);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -641,7 +713,7 @@ td.tank { color: var(--violet); }
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
-  background: var(--grad);
+  background: var(--acc);
 }
 .player-label {
   font-size: 1.8rem;
@@ -885,7 +957,7 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 
 /* ---- Upload ----------------------------------------------------
    Same vocabulary as the rest of the site: 10px radius, --panel/--panel2,
-   the blue-violet --grad for anything that is the primary action. Status
+   the blue-violet --acc for anything that is the primary action. Status
    colour is spent only on the final verdict; the per-check marks stay blue
    and dim, because a page of red and amber ticks reads as an alarm rather
    than as a form that is working.                                       */
@@ -906,7 +978,7 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 .up-drop .up-big { font-size: 1.05rem; font-weight: 650; margin-bottom: 4px; }
 .up-drop .up-icon {
   width: 34px; height: 34px; margin: 0 auto 10px;
-  border-radius: 9px; background: var(--grad);
+  border-radius: 9px; background: var(--acc);
   display: grid; place-items: center; color: #fff;
 }
 .up-drop .up-icon svg { width: 17px; height: 17px; display: block; }
@@ -931,7 +1003,7 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
   overflow: hidden; margin-bottom: 7px;
 }
 .up-bar i {
-  display: block; height: 100%; width: 0; background: var(--grad);
+  display: block; height: 100%; width: 0; background: var(--acc);
   border-radius: 99px; transition: width 220ms ease;
 }
 .up-bar.done i { background: linear-gradient(100deg, #4f7cff, #57b97e); }
@@ -1029,7 +1101,7 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 .up-signin-banner div { flex: 1 1 260px; color: var(--dim); }
 .up-signin-banner b { color: var(--text); }
 .btn-signin {
-  background: var(--grad); color: #fff; font-weight: 650; font-size: 0.85rem;
+  background: var(--acc); color: #fff; font-weight: 650; font-size: 0.85rem;
   padding: 8px 16px; border-radius: 9px; text-decoration: none; white-space: nowrap;
 }
 .btn-signin:hover { filter: brightness(1.09); }

@@ -3929,7 +3929,7 @@
   function renderMapsIndex() {
     var maps = (DATA.maps || []).slice().sort(function (a, b) { return b.games - a.games; });
     if (!maps.length) {
-      APP.innerHTML = '<div class="page-head"><h1>Maps</h1></div>' +
+      APP.innerHTML =
         '<div class="panel empty-state"><div class="big">No map data yet</div>' +
         '<div class="sub">Upload a replay and the maps show up here.</div></div>';
       return;
