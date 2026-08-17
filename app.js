@@ -591,7 +591,7 @@
       '<div class="big">Could not load the data</div>' +
       '<div class="sub">The site data did not come back. This is usually temporary.' +
       (detail ? " " + esc(detail) : "") + "</div>" +
-      '<div style="margin-top:16px"><button id="retry-load">Try again</button></div>' +
+      '<div style="margin-top:40px"><button id="retry-load">Try again</button></div>' +
       "</div>";
     var b = document.getElementById("retry-load");
     if (b) b.addEventListener("click", function () { location.reload(); });
@@ -1182,7 +1182,7 @@
     // reached by typing the URL or following an old link.
     if (!currentUser.loggedIn) {
       APP.innerHTML =
-        '<div class="page-head"><h1>Upload replays</h1></div>' +
+        '<div class="page-head"><h1 class="upload">Upload replays</h1></div>' +
         '<div class="up-signin-banner"><div><b>Sign in to upload.</b> Replays are ' +
         "tied to the Steam account that sends them. That is how the site knows who " +
         'recorded what.</div><a class="btn-signin" href="/auth/steam/login">' +
@@ -1961,7 +1961,7 @@
 
     APP.innerHTML =
       '<div class="player-head"><h1 class="player-label skull">' + esc(p.label) + "</h1>" +
-      idBadge + akaLine + "</div>" +
+      idBadge + "</div>"+ akaLine +
       '<div class="stat-grid">' +
       '<div class="stat-card"><div class="label">Clan</div><div class="stat-value">' + hideAware(p, "clan", p.clan ? esc(p.clan) : '<span class="small" style="opacity:.55">None</span>') + "</div></div>" +
       '<div class="stat-card"><div class="label">Games</div><div class="stat-value num">' + hideAware(p, "games", fmtNum(p.games)) + "</div></div>" +
