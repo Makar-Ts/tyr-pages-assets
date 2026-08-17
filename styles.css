@@ -313,7 +313,7 @@ h2 {
   flex: 1;
 }
 
-.page-head h1.map::before,h1.skull::before,h1.sword::before,h1.tank::before,h1.star::before {
+h1.map::before,h1.skull::before,h1.sword::before,h1.tank::before,h1.star::before,h1.search::before {
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -322,25 +322,29 @@ h2 {
   mask-position: center;
   mask-size: contain;
 }
-.page-head h1.map::before {
+h1.map::before {
   -webkit-mask-image: url("/assets/icons/map.svg");
   mask-image: url("/assets/icons/map.svg");
 }
-.page-head h1.skull::before {
+h1.skull::before {
   -webkit-mask-image: url("/assets/icons/skull.svg");
   mask-image: url("/assets/icons/skull.svg");
 }
-.page-head h1.sword::before {
+h1.sword::before {
   -webkit-mask-image: url("/assets/icons/sword.svg");
   mask-image: url("/assets/icons/sword.svg");
 }
-.page-head h1.tank::before {
+h1.tank::before {
   -webkit-mask-image: url("/assets/icons/tank.svg");
   mask-image: url("/assets/icons/tank.svg");
 }
-.page-head h1.star::before {
+h1.star::before {
   -webkit-mask-image: url("/assets/icons/star.svg");
   mask-image: url("/assets/icons/star.svg");
+}
+h1.search::before {
+  -webkit-mask-image: url("/assets/icons/search.svg");
+  mask-image: url("/assets/icons/search.svg");
 }
 
 
@@ -681,10 +685,39 @@ td.tank { color: var(--violet); }
 .past-names { color: var(--dim); margin-top: 6px; }
 
 /* ---- per-tank page header ---- */
+.tank-stats {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.tank-head {
+  background: rgb(from var(--panel) r g b / 20%);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  position: relative;
+  flex: 2;
+}
+
+@media (width < 1200px) {
+  .tank-stats {
+    flex-direction: column;
+  }
+  .tank-head {
+    margin-bottom: 0px;
+  }
+}
+
+.tank-head .player-label {
+  position: absolute;
+  font-size: 40px;
+  right: 40px;
+}
+
 .tank-head-img {
-  max-height: 96px;
+  width: 100%;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit:contain;
   margin-bottom: 10px;
   display: block;
 }
@@ -717,25 +750,15 @@ td.tank { color: var(--violet); }
 
 /* ---- player header ---- */
 .player-head {
-  padding: 22px 22px 18px;
-  border-radius: 10px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.player-head::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: var(--acc);
+  padding: 22px 22px 18px 47px;
+  display: flex;
+  gap: 20px;
 }
 .player-label {
   font-size: 1.8rem;
   font-weight: 800;
   margin: 0 0 4px;
+  flex: 1;
 }
 .id-copy {
   display: inline-flex;
@@ -794,12 +817,15 @@ td.tank { color: var(--violet); }
 /* matches list rows + full match page */
 .match-row td { vertical-align: middle; }
 .match-link { font-weight: 700; }
+.roster-wrap {
+  padding: 5px 0px 30px 0px;
+}
 .roster-wrap h4 {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--dim);
-  margin: 14px 0 6px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin: 25px 0 6px;
 }
 .map-head {
   display: flex;
@@ -918,8 +944,16 @@ tr.side-b:hover { background: rgba(239, 68, 68, 0.15); }
    legend's independent toggles above), so it gets its own color pair
    instead of relying on the dim/opacity distinction -- blue = selectable,
    violet = the one currently selected. */
-#bb-tabs .mchip { color: var(--blue); border-color: var(--blue); opacity: 1; }
-#bb-tabs .mchip:hover { color: var(--text); }
+#bb-tabs .mchip { 
+  color: var(--blue); 
+  border-color: var(--blue); 
+  opacity: 1; 
+  font-size: 0.9rem; 
+  flex: 1; 
+
+  transition: transform 120ms ease, border 120ms ease;
+}
+#bb-tabs .mchip:hover { color: var(--text); transform: translateY(-2px); border-color: var(--acc); }
 #bb-tabs .mchip.off { opacity: 0.7; }
 #bb-tabs .mchip:not(.off) { color: var(--violet); border-color: var(--violet); background: rgba(160, 107, 255, 0.18); }
 .mdot { width: 9px; height: 9px; border-radius: 2px; }
@@ -1321,14 +1355,22 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 .mu-h.bad { color: #e08a8a; }
 
 /* tank fingerprint: radar beside its own readout, stacking on a narrow screen */
+#tank-fingerprint-slot {
+  flex: 1;
+  width: fit-content;
+}
 .fingerprint-wrap {
   display: flex;
   gap: 22px;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .fingerprint-wrap .chart-svg { flex: 0 0 320px; max-width: 320px; }
-.fingerprint-key { flex: 1 1 220px; min-width: 200px; }
+.fingerprint-key { 
+  flex: 1 1 220px; 
+  min-width: 200px; 
+}
 .fingerprint-key > div {
   display: flex;
   justify-content: space-between;
@@ -1339,6 +1381,16 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 .fingerprint-key > div:last-child { border-bottom: 0; }
 .fingerprint-key b { font-variant-numeric: tabular-nums; }
 .fingerprint-key .dim { color: var(--dim); min-width: 84px; text-align: right; }
+.fingerprint-key .fingerprint-key-label {
+  width: 80px;
+}
+
+@media (width < 1200px) {
+  #tank-fingerprint-slot {
+    flex: initial;
+    width: 100%;
+  }
+}
 
 .net-input {
   flex: 1 1 200px;

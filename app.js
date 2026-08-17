@@ -1265,8 +1265,9 @@
 
   function renderAbout() {
     APP.innerHTML =
-      '<div class="page-head"><h1>About this data</h1></div>' +
+      '<div class="page-head"><h1 class="search">About this data</h1></div>' +
       '<div class="panel" style="max-width:64ch">' +
+      '<h2 style="font-size:16px;margin:0px 0 6px">Data source</h2>' +
       '<p>Everything here comes out of .replay files. Tyr writes one to your disk at the end of a ' +
       'match, and players upload them. There is no live game feed behind this and no official Tyr API.</p>' +
       '<p>That makes the picture <b>incomplete</b>. Only uploaded matches are here. If someone ' +
@@ -1274,14 +1275,16 @@
       'does not exist as far as this site is concerned.</p>' +
       '<p>A match tagged <b>Unknown</b> instead of Elimination or Capture is fine. Every player, ' +
       'tank and score on it is real. The decoder could not tell which signal ended the match, and ' +
-      'it would sooner say Unknown than guess.</p>' +
-      '<h2 style="font-size:16px;margin:22px 0 6px">Who sees what</h2>' +
+      'it would sooner say Unknown than guess.</p></div>' +
+      '<div class="panel" style="max-width:64ch">' +
+      '<h2 style="font-size:16px;margin:0px 0 6px">Who sees what</h2>' +
       '<p><b>Signed in players see everything about other players by default.</b> Signing in with ' +
       'Steam proves you are a real player and not an anonymous scraper. Two things stay hidden even ' +
       'from them: your Steam ID, unless you opt in to show it, and any individual stat you mark ' +
       '“hide from signed in too.”</p>' +
-      '<p><b>Signed out visitors</b> see only the players who chose to be public.</p>' +
-      '<h2 style="font-size:16px;margin:22px 0 6px">Your settings</h2>' +
+      '<p><b>Signed out visitors</b> see only the players who chose to be public.</p></div>' +
+      '<div class="panel" style="max-width:64ch">' +
+      '<h2 style="font-size:16px;margin:0px 0 6px">Your settings</h2>' +
       '<p>The gear at the top right is where you decide what others see of you.</p>' +
       '<ul style="margin:0 0 12px;padding-left:20px;line-height:1.7">' +
       '<li><b>Show my Steam ID</b> is off. It applies to every viewer, signed in ones included. ' +
@@ -1297,7 +1300,7 @@
       'and no other player sees it either way. You always see your own data in full.</li>' +
       '</ul>' +
       '<p><a href="/auth/steam/login">Sign in via Steam</a> to see all of it and to set your own ' +
-      'visibility.</p>' +
+      'visibility.</p></div>' +
       "</div>";
   }
 
@@ -1957,7 +1960,7 @@
         "</tr></thead><tbody>" + tanksRows + "</tbody></table></div></div>";
 
     APP.innerHTML =
-      '<div class="player-head"><div class="player-label">' + esc(p.label) + "</div>" +
+      '<div class="player-head"><h1 class="player-label skull">' + esc(p.label) + "</h1>" +
       idBadge + akaLine + "</div>" +
       '<div class="stat-grid">' +
       '<div class="stat-card"><div class="label">Clan</div><div class="stat-value">' + hideAware(p, "clan", p.clan ? esc(p.clan) : '<span class="small" style="opacity:.55">None</span>') + "</div></div>" +
@@ -1972,14 +1975,14 @@
       '<div class="stat-card"><div class="label">Avg Survival</div><div class="stat-value num">' + hideAware(p, "survival", fmtClock(p.avg_survival_sec)) + "</div></div>" +
       '<div class="stat-card"><div class="label">Survival %</div><div class="stat-value num">' + hideAware(p, "survival", fmtPct(p.avg_survival_pct)) + "</div></div>" +
       "</div>" +
-      squadmatesPanel(p) +
-      '<div class="panel"><h2>Career totals</h2><div class="stat-grid">' +
+      '<h2>Career totals</h2><div class="stat-grid">' +
       '<div class="stat-card"><div class="label">Total DMG</div><div class="stat-value num">' + hideAware(p, "damage", fmtNum(p.total.dmg)) + "</div></div>" +
       '<div class="stat-card"><div class="label">Total Assist</div><div class="stat-value num">' + hideAware(p, "assist", fmtNum(p.total.assist)) + "</div></div>" +
       '<div class="stat-card"><div class="label">Total Blocked</div><div class="stat-value num">' + hideAware(p, "blocked", fmtNum(p.total.blocked)) + "</div></div>" +
       '<div class="stat-card"><div class="label">Total Kills</div><div class="stat-value num">' + hideAware(p, "kills", fmtNum(p.total.kills)) + "</div></div>" +
-      "</div></div>" +
+      "</div>" +
       tanksPanel +
+      squadmatesPanel(p) +
       '<div class="panel"><h2>Match history</h2><div class="table-scroll"><table id="history-table"><thead><tr>' +
       "<th>Date</th><th>Map</th><th>Result</th><th>Tank</th><th>Kills</th>" +
       "</tr></thead><tbody>" + historyRows + "</tbody></table></div></div>";
@@ -2454,7 +2457,7 @@
       "&#11015; Download replay</a>" +
       "</div>" +
       "</div></div></div>" +
-      '<div class="roster-wrap panel">' +
+      '<div class="roster-wrap">' +
       rosterTable("Team A", teamA, "side-a") +
       rosterTable("Team B", teamB, "side-b") +
       (others.length ? rosterTable("Other", others, "") : "") +
@@ -2512,12 +2515,12 @@
       '<div class="page-head"><h1 class="star">Best Battles</h1></div>' +
       '<p class="small" style="margin:-8px 0 12px">One player, one match, the highest anyone has gone in each category.</p>' +
       '<div class="maplegend" id="bb-tabs" style="margin-bottom:14px">' + tabs + "</div>" +
-      '<div class="panel"><div class="table-scroll"><table><thead><tr>' +
+      '<div class="table-scroll"><table><thead><tr>' +
       '<th>#</th><th>Player</th><th>Tank</th><th>Map</th><th>Date</th><th>Result</th>' +
       '<th class="num">DMG</th><th class="num">Kills</th><th class="num">AST</th>' +
       '<th class="num">BLK</th><th class="num">Survival</th><th class="num">Surv %</th>' +
 
-      "</tr></thead><tbody id=\"bb-body\"></tbody></table></div></div>";
+      "</tr></thead><tbody id=\"bb-body\"></tbody></table></div>";
 
     document.getElementById("bb-tabs").addEventListener("click", function (e) {
       var btn = e.target.closest("[data-bb-key]");
@@ -2762,8 +2765,10 @@
     var pct = fmtPct(Math.round((t.pick_rate || 0) * 1000) / 10);
 
     APP.innerHTML =
+      '<div class="tank-stats">' +
       '<div class="player-head tank-head">' + img +
       '<div class="player-label">' + esc(t.tank) + "</div></div>" +
+      '<div id="tank-fingerprint-slot"></div></div>' +
       '<div class="stat-grid">' +
       '<div class="stat-card"><div class="label">Games</div><div class="stat-value num">' + fmtNum(t.games) + "</div></div>" +
       '<div class="stat-card"><div class="label">Winrate</div><div class="stat-value num">' + fmtPct(t.winrate) + "</div></div>" +
@@ -2780,7 +2785,6 @@
       '<div class="stat-card"><div class="label">Avg Blocked</div><div class="stat-value num">' + fmtNum(t.avg.blocked) + "</div></div>" +
       '<div class="stat-card"><div class="label">Avg Kills</div><div class="stat-value num">' + fmtNum(t.avg.kills) + "</div></div>" +
       "</div>" +
-      '<div id="tank-fingerprint-slot"></div>' +
       keystonePanel(t) +
       playersPanel +
       '<p><a href="#/tanks">&larr; Back to tanks</a></p>';
@@ -2837,12 +2841,12 @@
                display: fmtNum(Math.round(v * 10) / 10) };
     }).filter(Boolean);
     if (axes.length < 3) return "";
-    return '<div class="panel"><h2>Shape of this tank</h2>' +
+    return '<div class="panel">' +
       '<div class="fingerprint-wrap">' +
       svgRadar(axes, { color: tankColor(t.tank) || CHART_COLORS[0] }) +
       '<div class="fingerprint-key small">' +
       axes.map(function (a) {
-        return "<div><span>" + esc(a.label) + "</span><b>" + esc(a.display) +
+        return '<div><span class="fingerprint-key-label">' + esc(a.label) + "</span><b>" + esc(a.display) +
           '</b><span class="dim">' + Math.round(a.value / a.max * 100) + "% of best</span></div>";
       }).join("") + "</div></div>" +
       '<p class="small" style="margin-top:10px">Scaled to the best tank on each axis.</p></div>';
