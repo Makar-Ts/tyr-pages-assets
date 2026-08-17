@@ -262,9 +262,15 @@ main#app {
   margin: 0 auto;
   padding: 0 20px 32px;
   font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
 }
 .site-footer a { color: var(--dim); }
 .site-footer a:hover { color: var(--blue); }
+.site-footer p {
+  margin: 0;
+  color: var(--dim);
+}
 
 .panel {
   background: var(--panel);
