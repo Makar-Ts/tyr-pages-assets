@@ -1513,7 +1513,7 @@
 
   function renderOnline() {
     APP.innerHTML =
-      '<div class="page-head"><h1>Players online</h1></div>' +
+      '<div class="page-head"><h1 class="skull">Players online</h1></div>' +
       '<div class="panel" id="online-slot"><p class="small">Loading…</p></div>';
 
     function paint(d) {
@@ -1685,7 +1685,7 @@
 
     APP.innerHTML =
       steamChartSection() +
-      '<div class="page-head"><h1>Players</h1>' +
+      '<div class="page-head"><h1 class="skull">Players</h1>' +
       '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
       '<input type="search" class="search-box" id="lb-search" placeholder="Search player name or ID…" value="' + esc(lbState.q) + '">' +
       '<input type="number" min="0" class="search-box" id="lb-min-games" placeholder="Min games" style="width:110px" value="' + (lbState.minGames || "") + '">' +
@@ -1695,14 +1695,14 @@
       "</div></div>" +
       lbBuildCaption() +
       lbFilterCaption() +
-      '<div class="panel"><div class="table-scroll"><table id="lb-table"><thead><tr>' +
+      '<div class="table-scroll"><table id="lb-table"><thead><tr>' +
       "<th>#</th><th>Player</th>" +
       '<th class="sortable" data-key="games">Games<span class="arrow"></span></th>' +
       '<th class="sortable" data-key="avg.dmg">Avg DMG<span class="arrow"></span></th>' +
       '<th class="sortable" data-key="avg.assist">Avg AST<span class="arrow"></span></th>' +
       '<th class="sortable" data-key="avg.blocked">Avg BLK<span class="arrow"></span></th>' +
       '<th class="sortable" data-key="avg.kills">Avg Kills<span class="arrow"></span></th>' +
-      '</tr></thead><tbody id="lb-body"></tbody></table></div></div>';
+      '</tr></thead><tbody id="lb-body"></tbody></table></div>';
 
     renderLeaderboardBody(players);
 
@@ -2139,7 +2139,7 @@
   function scoreText(m) {
     if (m.score_ally === null || m.score_ally === undefined ||
         m.score_enemy === null || m.score_enemy === undefined) return "-";
-    return fmtNum(m.score_ally) + " : " + fmtNum(m.score_enemy);
+    return fmtNum(m.score_ally) + "hp / " + fmtNum(m.score_enemy) + "hp";
   }
 
   // reused by the Matches page and each per-map page's "matches on this map" list
@@ -2337,7 +2337,7 @@
                  ["length-asc", "Shortest"]];
 
     APP.innerHTML =
-      '<div class="page-head"><h1>Matches</h1><div class="m-count" id="m-count"></div></div>' +
+      '<div class="page-head"><h1 class="sword">Matches</h1><div class="m-count" id="m-count"></div></div>' +
       '<div class="m-controls">' +
         '<input type="search" class="search-box m-search" id="m-q" placeholder="Search player, clan, map or uploader…" value="' + esc(mState.q) + '">' +
         '<select class="search-box" id="m-build"><option value="">All versions</option>' + buildOptions(mState.build) + "</select>" +
@@ -2437,19 +2437,17 @@
     }
 
     APP.innerHTML =
-      '<div class="page-head"><h1>' + (m.map ? esc(m.map) : "Unknown map") + "</h1>" +
+      '<div class="page-head"><h1 class="map">' + (m.map ? esc(m.map) : "Unknown map") + "</h1>" +
       '<div class="small">' + esc(fmtDateTime(m.captured_unix, true)) +
       ' &middot; <span class="mono">' + esc(m.match_id) + "</span>" + credit + "</div></div>" +
       '<div class="match-head panel"><div class="match-head-row">' +
       mapImgTag(m.map, "match-head-map") +
       '<div class="match-head-facts">' +
-      "<div>" + resultChip(m.win_type) + " " + typeChip(m) + "</div>" +
+      "<div>" + resultChip(m.win_type) + " " + '<span class="chip chip-standard">' + teamA.length + " v " + teamB.length + '</span>' + " " + typeChip(m) + "</div>" +
       (m.win_type ? "" :
         '<div class="small" style="margin-top:4px;color:var(--dim)">The decoder could not confirm ' +
         "how this match ended. The rest of the data is real.</div>") +
-      '<div class="score" style="margin-top:6px">Final HP ' + scoreText(m) + "</div>" +
-      '<div class="small" style="margin-top:6px">' + teamA.length + " v " + teamB.length +
-      ' &middot; <span id="match-duration">-</span></div>' +
+      '<div class="score" style="margin:12px 0px;font-size: 1.5rem;">' + scoreText(m) + ' <span class="match-time">(<span id="match-duration">-</span>)</span>' + "</div>" +
       '<div style="margin-top:10px">' +
       '<a class="replay-dl" href="replays/' + encodeURIComponent(m.match_id) +
       '.replay" download="' + esc(slugify(m.map || "match")) + "-" + esc(m.match_id) + '.replay">' +
@@ -2511,7 +2509,7 @@
       return '<button class="mchip' + (c.key === bbState.key ? "" : " off") + '" data-bb-key="' + c.key + '">' + esc(c.label) + "</button>";
     }).join("");
     APP.innerHTML =
-      '<div class="page-head"><h1>Best Battles</h1></div>' +
+      '<div class="page-head"><h1 class="star">Best Battles</h1></div>' +
       '<p class="small" style="margin:-8px 0 12px">One player, one match, the highest anyone has gone in each category.</p>' +
       '<div class="maplegend" id="bb-tabs" style="margin-bottom:14px">' + tabs + "</div>" +
       '<div class="panel"><div class="table-scroll"><table><thead><tr>' +
@@ -2589,8 +2587,8 @@
     // stay here rather than disappearing.
     APP.innerHTML =
       (SHOW_PLAYER_PAGES ? "" : popularTanksStrip() + steamChartSection()) +
-      '<div class="page-head"><h1>Tanks</h1></div>' +
-      '<div class="panel"><div class="table-scroll"><table id="tanks-table"><thead><tr>' +
+      '<div class="page-head"><h1 class="tank">Tanks</h1></div>' +
+      '<div class="table-scroll"><table id="tanks-table"><thead><tr>' +
       '<th class="sortable" data-key="tank">Tank<span class="arrow"></span></th>' +
       '<th class="sortable num" data-key="games">Games<span class="arrow"></span></th>' +
       '<th class="sortable num" data-key="winrate">Winrate<span class="arrow"></span></th>' +
@@ -2606,7 +2604,7 @@
       '<th class="sortable num" data-key="dpm">DPM<span class="arrow"></span></th>' +
       '<th class="sortable num" data-key="kill_range">Kill range<span class="arrow"></span></th>' +
       '<th class="sortable num" data-key="pick_rate">Pick rate<span class="arrow"></span></th>' +
-      "</tr></thead><tbody id=\"tanks-body\"></tbody></table></div></div>" +
+      "</tr></thead><tbody id=\"tanks-body\"></tbody></table></div>" +
       '<div id="tanks-roster"></div>';
 
     renderTanksBody();
@@ -3943,7 +3941,7 @@
         " &middot; avg " + fmtClock(mp.avg_duration_sec) + "</div>" +
         "</a>";
     }).join("");
-    APP.innerHTML = '<div class="page-head"><h1>Maps</h1>' +
+    APP.innerHTML = '<div class="page-head"><h1 class="map">Maps</h1>' +
       '<div class="small">' + maps.length + (maps.length === 1 ? " map" : " maps") + " with decoded match data</div></div>" +
       '<div class="maps-grid">' + cards + "</div>";
   }
@@ -4008,15 +4006,15 @@
     }).join("") : '<tr><td colspan="3" class="small">No tank data.</td></tr>';
 
     APP.innerHTML =
-      '<div class="page-head"><h1>' + esc(mp.map) + "</h1>" +
+      '<div class="page-head"><h1 class="map">' + esc(mp.map) + "</h1>" +
       '<div class="small">Aggregated from ' + fmtNum(mp.games) +
       (mp.games === 1 ? " decoded match" : " decoded matches") + "</div></div>" +
-      '<div class="match-head panel"><div class="match-head-row">' +
+      '<div class="map-head"><div class="match-head panel"><div class="match-head-row">' +
       mapHeroImgTag(mp.slug, "match-head-map") +
       '<div class="match-head-facts small">' +
-      "<div>Win type: " + winTypeChips(mp.win_type) + "</div>" +
+      '<div><span style="font-size: 0.9rem;font-weight: 700;">Win type: &nbsp;&nbsp;<span>' + winTypeChips(mp.win_type) + "</div>" +
       "</div></div></div>" +
-      '<div class="stat-grid">' + statCards + "</div>" +
+      '<div class="map-page-stat stat-grid">' + statCards + "</div></div>" +
       '<div class="panel"><h2>Tanks played here</h2><div class="table-scroll"><table><thead><tr>' +
       "<th>Tank</th><th>Games</th><th>Pick rate</th>" +
       "</tr></thead><tbody>" + tanksRows + "</tbody></table></div></div>" +

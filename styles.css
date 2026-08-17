@@ -35,7 +35,8 @@ html, body {
 }
 
 body {
-  font-family: "Ballinger", sans-serif;
+  font-family: "POE Vetica New", sans-serif;
+  letter-spacing: 1px;
   line-height: 1.45;
 }
 
@@ -95,7 +96,7 @@ a:hover { text-decoration: underline; }
 }
 .tabs a {
   color: var(--dim);
-  padding: 6px 12px 6px 20px;
+  padding: 6px 12px 6px 14px;
 
   flex: 1;
   max-width: 150px;
@@ -179,7 +180,6 @@ a:hover { text-decoration: underline; }
   background: var(--panel2);
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 8px;
   padding: 5px 10px;
   font-size: 0.8rem;
   cursor: pointer;
@@ -201,7 +201,6 @@ a:hover { text-decoration: underline; }
   box-sizing: border-box;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
   padding: 14px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   /* Wrapping the labels made this tall enough to run off the bottom of a
@@ -216,7 +215,6 @@ a:hover { text-decoration: underline; }
   background: var(--panel2);
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 6px;
   padding: 3px 8px;
   font-size: 0.8rem;
   max-width: 100%;
@@ -271,7 +269,6 @@ main#app {
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
   padding: 18px 20px;
   margin-bottom: 20px;
 }
@@ -302,15 +299,6 @@ h2 {
   border-bottom: 1px solid var(--border);
   position: relative;
 }
-h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 56px;
-  height: 2px;
-  background: var(--acc);
-}
 
 .page-head {
   display: flex;
@@ -325,6 +313,38 @@ h2::after {
   flex: 1;
 }
 
+.page-head h1.map::before,h1.skull::before,h1.sword::before,h1.tank::before,h1.star::before {
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+.page-head h1.map::before {
+  -webkit-mask-image: url("/assets/icons/map.svg");
+  mask-image: url("/assets/icons/map.svg");
+}
+.page-head h1.skull::before {
+  -webkit-mask-image: url("/assets/icons/skull.svg");
+  mask-image: url("/assets/icons/skull.svg");
+}
+.page-head h1.sword::before {
+  -webkit-mask-image: url("/assets/icons/sword.svg");
+  mask-image: url("/assets/icons/sword.svg");
+}
+.page-head h1.tank::before {
+  -webkit-mask-image: url("/assets/icons/tank.svg");
+  mask-image: url("/assets/icons/tank.svg");
+}
+.page-head h1.star::before {
+  -webkit-mask-image: url("/assets/icons/star.svg");
+  mask-image: url("/assets/icons/star.svg");
+}
+
+
+
 .empty-state {
   text-align: center;
   padding: 64px 24px;
@@ -338,7 +358,6 @@ h2::after {
   background: var(--panel2);
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 8px;
   padding: 8px 12px;
   font-size: 0.9rem;
   min-width: 220px;
@@ -366,7 +385,6 @@ a.steam-panel:hover { border-color: var(--blue); text-decoration: none; }
   width: 14px;
   height: 10px;
   border: 1px solid transparent;
-  border-radius: 2px;
   display: inline-block;
 }
 .ol-sw-line {
@@ -412,21 +430,20 @@ a.steam-panel:hover { border-color: var(--blue); text-decoration: none; }
   padding: 12px;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
   color: var(--text);
   text-decoration: none;
   transition: border-color 120ms ease, transform 120ms ease;
 }
 a.match-card:hover {
-  border-color: var(--blue);
-  transform: translateY(-2px);
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  text-decoration: none;
 }
 
 .mc-top { display: flex; align-items: center; gap: 10px; }
 .mc-thumb {
   width: 44px;
   height: 44px;
-  border-radius: 8px;
   object-fit: cover;
   flex: 0 0 auto;
 }
@@ -439,7 +456,7 @@ a.match-card:hover {
   text-overflow: ellipsis;
 }
 .mc-when { color: var(--dim); font-size: 0.75rem; margin-top: 2px; }
-.mc-type { flex: 0 0 auto; }
+.mc-type { flex: 0 0 auto; align-self: self-start; }
 
 .mc-mid {
   display: flex;
@@ -520,7 +537,6 @@ td.tank { color: var(--violet); }
   display: inline-flex;
   align-items: center;
   padding: 3px 10px;
-  border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -628,7 +644,7 @@ td.tank { color: var(--violet); }
 .map-card:hover { 
   border-color: var(--acc); 
   text-decoration: none; 
-  transform: translateY(-2px); 
+  transform: translateY(-5px); 
   background-color: rgb(from var(--acc) r g b / 15%);
 }
 .map-card-img {
@@ -646,12 +662,12 @@ td.tank { color: var(--violet); }
 .steam-panel { padding: 16px 20px; }
 .steam-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
 }
 .steam-latest {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  line-height: 2rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   background: var(--acc);
@@ -675,15 +691,16 @@ td.tank { color: var(--violet); }
 
 /* ---- stat cards ---- */
 .stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 20px;
 }
 .stat-card {
   background: var(--panel2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  min-width: 150px;
+  flex: 1;
   padding: 14px 16px;
 }
 .stat-card .label {
@@ -740,8 +757,6 @@ td.tank { color: var(--violet); }
 .match-card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 12px;
   overflow: hidden;
 }
 .match-card summary {
@@ -786,29 +801,72 @@ td.tank { color: var(--violet); }
   color: var(--dim);
   margin: 14px 0 6px;
 }
-.match-head-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.map-head {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.map-head > * {
+  flex: 1;
+}
+@media (width < 800px) {
+  .map-head {
+    flex-direction: column;
+  }
+}
+.match-head {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.match-head-row { 
+  display: flex; 
+  align-items: center; 
+  gap: 18px; 
+  flex-wrap: wrap; 
+  position: relative;
+}
 .match-head-map {
-  width: 120px;
-  height: 72px;
+  width: 100%;
   object-fit: cover;
-  border-radius: 8px;
   border: 1px solid var(--border);
 }
-.match-head-facts .score { font-variant-numeric: tabular-nums; font-weight: 700; }
+.match-head-facts {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  padding: 10px 14px;
+  backdrop-filter: blur(6px);
+  background-color: #00000067;
+}
+.match-head-facts .score { 
+  font-variant-numeric: tabular-nums; 
+  font-weight: 700; 
+
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 .replay-dl {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background: var(--panel2);
   border: 1px solid var(--border);
-  border-radius: 8px;
   padding: 6px 12px;
+  width: 100%;
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text);
-  transition: border-color 120ms ease, background 120ms ease;
+  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
 }
-.replay-dl:hover { border-color: var(--blue); background: rgba(79, 124, 255, 0.1); text-decoration: none; }
+.replay-dl:hover { 
+  border-color: var(--blue); 
+  background: rgba(79, 124, 255, 0.1); 
+  text-decoration: none;
+  transform: translateY(-5px);
+}
 
 tr.side-a { background: rgba(34, 197, 94, 0.07); }
 tr.side-b { background: rgba(239, 68, 68, 0.07); }
@@ -850,7 +908,7 @@ tr.side-b:hover { background: rgba(239, 68, 68, 0.15); }
   background: transparent; /* .mchip is a <button> -- without this the
     native UA gray button chrome shows through wherever no other rule
     sets a background (e.g. the unselected state below) */
-  border: 1px solid var(--border); border-radius: 8px; padding: 5px 11px;
+  border: 1px solid var(--border); padding: 5px 11px;
   cursor: pointer; user-select: none;
   transition: color 120ms ease, border-color 120ms ease, opacity 120ms ease, background 120ms ease;
 }
@@ -1296,6 +1354,9 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
 
 
 /* roster gallery */
+#tanks-roster {
+  margin-top: 60px;
+}
 .roster-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -1305,17 +1366,20 @@ tr.map-bg-row:hover > td { background: rgba(22, 30, 62, 0.80); }
   position: relative;
   display: block;
   padding: 12px;
-  border-radius: 12px;
   border: 1px solid var(--border);
   border-top: 3px solid var(--tc);
   background: linear-gradient(170deg, color-mix(in srgb, var(--tc) 16%, transparent), transparent 70%);
   transition: transform 0.12s ease, border-color 0.12s ease;
 }
-.roster-card:hover { transform: translateY(-2px); border-color: var(--tc); }
+.roster-card:hover { 
+  transform: translateY(-5px); 
+  border-color: var(--tc);
+  text-decoration: none;
+}
 .rt-art { height: 74px; display: flex; align-items: center; justify-content: center; }
 .rt-img { max-height: 74px; max-width: 100%; }
-.rt-name { font-weight: 700; margin-top: 4px; }
-.rt-games { color: var(--dim); }
+.rt-name { font-weight: 700; margin-top: 4px; color: var(--tc); font-size: 1.2rem; }
+.rt-games { font-weight: 600; color: var(--text); }
 .rt-bits { margin-top: 8px; display: grid; gap: 3px; }
 .rt-bit { display: flex; justify-content: space-between; gap: 8px; }
 .rt-bit span { color: var(--dim); }

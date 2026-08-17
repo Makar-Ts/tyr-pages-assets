@@ -1,154 +1,90 @@
+/* POE Vetica New */
+
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-light-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Thin Italic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-lightitalic-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Light Italic.woff") format("woff");
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-regular-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-regularitalic-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-medium-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-mediumitalic-1.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Medium Italic.woff") format("woff");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-bold-1.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-bolditalic-1.otf") format("opentype");
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-xbold-1.otf") format("opentype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Ballinger";
-  src: url("./ballinger/Fontspring-DEMO-ballinger-xbolditalic.otf") format("opentype");
-  font-weight: 800;
-  font-style: italic;
-}
-
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-300-light.otf") format("opentype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-300-light-italic.otf") format("opentype");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-400-regular.otf") format("opentype");
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Condensed.woff") format("woff");
   font-weight: 400;
+  font-stretch: condensed;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-400-regular-italic.otf") format("opentype");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-500-medium.otf") format("opentype");
-  font-weight: 500;
+  font-family: "POE Vetica New";
+  src: url("/assets/fonts/vetica/POE Vetica New Condensed Bold.woff") format("woff");
+  font-weight: 700;
+  font-stretch: condensed;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-500-medium-italic.otf") format("opentype");
-  font-weight: 500;
-  font-style: italic;
-}
+
+/* POE Vetica */
 
 @font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-600-semibold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-600-semibold-italic.otf") format("opentype");
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-700-bold.otf") format("opentype");
+  font-family: "POE Vetica";
+  src: url("/assets/fonts/vetica/POE Vetica Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-700-bold-italic.otf") format("opentype");
+  font-family: "POE Vetica";
+  src: url("/assets/fonts/vetica/POE Vetica Bold Italic.woff") format("woff");
   font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-800-extrabold.otf") format("opentype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Dexa Pro";
-  src: url("./dexa/Fontspring-DEMO-dexapro-800-extrabold-italic.otf") format("opentype");
-  font-weight: 800;
   font-style: italic;
 }
